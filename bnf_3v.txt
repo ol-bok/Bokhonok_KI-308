@@ -1,0 +1,62 @@
+program = "Program", program_name, ";", "Var", declaration, ";", "Begin", statement_iteration, "End" ;
+
+program_name = ident_terminal ;
+
+declaration = value_type, ident, other_declaration_ident_iteration ;
+other_declaration_ident_iteration = { ",", ident } ;
+
+value_type = "Int16" ;
+
+rl_expression = ident, "==>", expression ;
+
+expression = left_expression, [ binary_action_iteration ] ;
+left_expression = ( "(", expression, ")" )
+                | unary_operator, expression
+                | ident_terminal
+                | value_terminal ;
+
+binary_action_iteration = binary_action, { binary_action } ;
+binary_action = binary_operator, expression ;
+
+unary_operator = "!", "+" | "-" ;
+binary_operator = "And" | "Or" | "Eg" | "Ne" | ">>" | "<<" | "+" | "-" | "Mul" | "Div" | "Mod" ;
+
+cond_block = "If", "(", expression, ")", body_for_true, [ body_for_false ] ;
+
+body_for_true = ( statement_iteration | statement ) ;
+body_for_false = "Else", ( statement_iteration | statement ) ;
+
+forto_cycle = "For", cycle_counter_init, "To", cycle_counter_last_value, "Do", statement_iteration ;
+fordownto_cycle = "For", cycle_counter_init, "Downto", cycle_counter_last_value, "Do", statement_iteration ;
+
+cycle_counter_init = ident_terminal, "==>", value_terminal ;
+cycle_counter_last_value = value_terminal ;
+
+while_cycle = "While", expression, "Do", statement_iteration ;
+
+repeat_until_cycle = "Repeat", statement_iteration, "Until", group_expression ;
+
+group_expression = "(", expression, ")" ;
+
+statement_iteration = { statement } ;
+
+statement = ( rl_expression
+            | cond_block
+            | forto_cycle
+            | fordownto_cycle
+            | while_cycle
+            | repeat_until_cycle
+            | label, ":"
+            | "Goto", label
+            | input
+            | output ) ;
+
+input = "Get", "(", ident_terminal, ")" ;
+output = "Put", "(", expression, ")" ;
+
+label = ident_terminal ;
+
+ident_terminal = <ідентифікатор у форматі UpperCamelCase, макс. довжина 6 символів> ;
+value_terminal = <ціле значення в діапазоні Int16> ;
+
+comment = "!!", { будь-який текст }, "!!" ;
