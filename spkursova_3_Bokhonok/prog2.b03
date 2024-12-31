@@ -1,0 +1,57 @@
+!!Prog2!!
+Program prog2;
+Var Int16 AAAAAA,BBBBBB,CCCCCC;
+Begin
+Get AAAAAA;
+Get BBBBBB;
+Get CCCCCC;
+If(AAAAAA >> BBBBBB)
+Begin
+	If(AAAAAA >> CCCCCC)
+	Begin
+		Goto Abigger;		
+	End
+	Else
+	Begin
+		Put CCCCCC;
+		Goto Outofif;
+		Abigger:		
+		Put AAAAAA;
+		Goto Outofif;
+	End
+End	
+If(BBBBBB << CCCCCC)
+Begin
+	Put CCCCCC;
+End	
+Else
+Begin
+	Put BBBBBB;
+End
+Outofif:	
+
+If((AAAAAA Eg BBBBBB) And (AAAAAA Eg CCCCCC) And (BBBBBB Eg CCCCCC))
+Begin
+	Put 1;
+End	
+Else
+Begin
+	Put 0;
+End
+If((AAAAAA << 0) Or (BBBBBB << 0) Or (CCCCCC << 0))
+Begin
+	Put -1;
+End	
+Else
+Begin
+	Put 0;
+End
+If(!(AAAAAA << (BBBBBB + CCCCCC)))
+Begin
+	Put(10);
+End	
+Else
+Begin
+	Put(0);
+End
+End
