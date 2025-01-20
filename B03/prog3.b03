@@ -1,0 +1,15 @@
+Program PROGRA;
+Var Int16 AAAAAA, BBBBBB, XXXXXX, IIIIII, JJJJJJ;
+Begin
+  Get AAAAAA 
+  Get BBBBBB
+
+For AAAAAA ==> XXXXXX To BBBBBB Do
+    Put XXXXXX Mul XXXXXX
+0 ==> XXXXXX
+For 1 ==> IIIIII To AAAAAA Do
+    For 1 ==> JJJJJJ To BBBBBB Do 
+        XXXXXX + 1 ==> XXXXXX
+
+Put XXXXXX
+End
